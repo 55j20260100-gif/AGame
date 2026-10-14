@@ -10,28 +10,51 @@ import gfshow.StartMenu;
 class MainMenu extends FlxState
 {
     var text:FlxText;
-    var Pushed:Bool = false;
-    var texted:Int;
+    var pushed:Bool = false;
+
     override public function create():Void
     {
         FlxG.camera.bgColor = FlxColor.BLACK;
         super.create();
 
         text = new FlxText(0, 0, FlxG.width, "");
-        text.setFormat("assets/fonts/Funkin.ttf", 32, FlxColor.WHITE, CENTER);
-        text.screenCenter(Y); // 縦方向だけ中央に配置
+        text.setFormat("fonts/Funkin.ttf", 32, FlxColor.WHITE, CENTER);
+        text.screenCenter(Y);
         add(text);
-        function showMSG(msg:String, seconds:Int) {
-            new FlxTimer().start(seconds, function(_) {
-                text.text = msg;
-            });
+
+        showMSG("Hello! I made this engine", 2);
+        showMSG("The original engine was created by Ninjamuffin99", 4);
+        showMSG("And this engine was made by SelvenaDev", 6);
+        showMSG("")
+        showMSG("Friday", 8);
+        showMSG("Friday Night", 8.5);
+        showMSG("Friday Night Funkin", 9);
+    }
+
+    function showMSG(msg:String, seconds:Float):Void
+    {
+        new FlxTimer().start(seconds, function(_)
+        {
+            text.text = msg;
+        });
+    }
+
+    function goto():Void
+    {
+        if (!pushed)
+        {
+            pushed = true;
+            FlxG.switchState(() -> new StartMenu());
         }
-        showMSG("Heloo! I made this engine", 2);
-        showMSG("This is Created Original Engine is Ninjamuffin99", 4);
-        showMSG("And Made Engine is SelvenaDev", 6);
-        showMSG("Friday             ", 8);
-        showMSG("Friday Night       ", 10);
-        showMSG("Friday Night Funkin", 12);
-        FlxG.switchState(() -> new gfshow.StartMenu());
+    }
+
+    override public function update(elapsed:Float):Void
+    {
+        super.update(elapsed);
+
+        if (FlxG.keys.justPressed.ENTER)
+        {
+            goto();
+        }
     }
 }
