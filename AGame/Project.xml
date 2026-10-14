@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <app
+        main="Main"
+        file="NoNameEngine"
+        title="No Name Engine"
+        package="com.noname.nonameengine"
+        version="1.0.0"
+        company="noname"
+    />
+
+    <window
+        width="600"
+        height="200"
+        fps="60"
+        background="#000000"
+        resizable="true"
+        allow-high-dpi="true"
+    />
+
+    <source path="src" />
+    <assets path="assets" />
+
+    <haxelib name="flixel" />
+</project>
